@@ -1,0 +1,786 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === (existing theme notes preserved) ===
+   Sage Green: #C9DABF
+   Deep Sage: #A3B899
+   Forest Green: #4C705A
+   Soft Yellow: #F5E6A1
+   Warm Beige / Off-white: #FAF9F6
+*/
+
+/* Keep smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===================== Navbar ===================== */
+.navbar {
+  @apply flex justify-between items-center px-4 py-3 bg-[#FAF9F6] shadow-md sticky top-0 z-50;
+}
+
+/* original nav styles retained */
+.nav-links {
+  @apply hidden md:flex gap-4 md:gap-6 text-[#4C705A] font-medium;
+}
+
+.nav-item {
+  @apply relative cursor-pointer transition-colors duration-300 hover:text-[#7B9971];
+}
+
+.nav-item::after {
+  content: "";
+  @apply absolute bottom-0 left-0 w-0 h-[2px] bg-[#A3B899] transition-all duration-300;
+}
+
+.nav-item:hover::after {
+  @apply w-full;
+}
+
+.nav-actions {
+  @apply hidden md:flex items-center gap-3 md:gap-4;
+}
+
+/* Search box focus emphasis remains */
+.search-box {
+  @apply border border-[#C9DABF] rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-[#A3B899];
+}
+
+/* Slightly more pronounced hover behaviour kept */
+.signup-btn {
+  @apply bg-[#F5E6A1] hover:bg-[#EEDC82] text-[#4C705A] font-semibold px-3 py-2 md:px-4 md:py-2.5 rounded-lg transition;
+}
+
+.cart-btn {
+  @apply text-xl text-[#4C705A] hover:text-[#7B9971] transition;
+}
+
+.menu-btn {
+  @apply text-2xl p-2 rounded hover:bg-[#E9E7E3] transition md:hidden;
+}
+
+.cart-btn:hover, .signup-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+/* =============== Cart Modal Styles =============== */
+.cart-overlay {
+  @apply fixed inset-0 bg-black/30 flex justify-end z-50 backdrop-blur-sm;
+}
+
+.cart-modal {
+  @apply bg-white w-full sm:w-96 h-full sm:rounded-l-3xl shadow-2xl p-6 flex flex-col transition-transform duration-300;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.cart-header {
+  @apply flex justify-between items-center border-b pb-3 mb-4;
+}
+
+.cart-title {
+  @apply text-xl font-semibold text-[#4C705A];
+}
+
+.cart-close {
+  @apply text-gray-500 hover:text-[#4C705A] transition;
+}
+
+.cart-empty {
+  @apply text-center text-gray-400 mt-10;
+}
+
+.cart-items {
+  @apply flex-1 overflow-y-auto space-y-4;
+}
+
+.cart-item {
+  @apply flex items-center gap-3 bg-[#FAF9F6] p-3 rounded-xl shadow-sm;
+}
+
+.cart-item-img {
+  @apply w-16 h-16 object-contain rounded-lg;
+}
+
+.cart-item-info {
+  @apply flex flex-col;
+}
+
+.cart-item-name {
+  @apply font-medium text-[#374151];
+}
+
+.cart-item-price {
+  @apply text-sm text-[#6B7280];
+}
+
+.cart-footer {
+  @apply mt-4 border-t pt-4;
+}
+
+.checkout-btn {
+  @apply w-full bg-[#4C705A] text-white py-3 rounded-xl font-semibold hover:bg-[#3E5C4B] transition;
+}
+
+/* ===================== Mobile Nav ===================== */
+.mobile-nav {
+  @apply bg-[#FAF9F6] shadow-md py-4 px-5 flex flex-col gap-4 font-medium text-[#4C705A];
+}
+
+.mobile-item {
+  @apply hover:text-[#7B9971] transition;
+}
+
+/* ===================== Featured Section ===================== */
+/* preserved original featured styles; slight micro-animations added */
+.featured-section {
+  @apply w-full bg-[#FAF9F6] py-12 px-4 md:px-8;
+}
+
+.featured-banner {
+  @apply relative rounded-3xl p-6 flex flex-col items-center justify-center overflow-hidden shadow-md transition-all duration-500 ease-in-out;
+  transform: translateY(0);
+}
+
+.bg-brand-mint {
+  background: linear-gradient(135deg, #A9C99E 0%, #DFF3E1 100%);
+}
+.bg-brand-peach {
+  background: linear-gradient(135deg, #F5CBA7 0%, #FFEDE1 100%);
+}
+.bg-brand-cream {
+  background: linear-gradient(135deg, #FFF4D1 0%, #FDF6E3 100%);
+}
+
+.featured-banner:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Feature images: preserved but ensure smoother transitions */
+.featured-img {
+  @apply w-3/5 md:w-3/4 object-contain drop-shadow-md transition-transform duration-500;
+}
+.featured-banner:hover .featured-img {
+  transform: scale(1.05);
+}
+
+.featured-img-small {
+  @apply w-3/5 md:w-2/3 object-contain drop-shadow-sm transition-transform duration-500;
+}
+.featured-banner:hover .featured-img-small {
+  transform: scale(1.03);
+}
+
+/* Animated CTA button preserved style; added focus state */
+.banner-btn-animated {
+  @apply absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-[#4C705A] text-[#FAF9F6] px-6 py-2.5 rounded-full font-semibold shadow-md transition-all duration-300 z-10;
+  letter-spacing: 0.5px;
+}
+.banner-btn-animated:hover {
+  background-color: #F5E6A1;
+  color: #4C705A;
+  transform: translate(-50%, -6px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(76, 112, 90, 0.25);
+}
+.banner-btn-animated:focus {
+  @apply outline-none ring-2 ring-[#A3B899] ring-offset-2;
+}
+
+/* Optional subtle gradient overlay for elegance */
+.featured-banner::before {
+  content: "";
+  @apply absolute inset-0 rounded-3xl opacity-10 pointer-events-none;
+  background: radial-gradient(circle at top left, rgba(76, 112, 90, 0.15) 0%, transparent 70%);
+}
+
+/* ===================== Hero Section ===================== */
+.hero {
+  @apply relative overflow-hidden text-center flex items-center justify-center px-4 py-6 sm:px-5 sm:py-8 md:px-8 md:py-10 rounded-xl mx-4 my-6 shadow-sm;
+  background: linear-gradient(135deg, #e3ecda 0%, #f1f5ee 50%, #fbfbf9 100%);
+}
+
+.hero-badge {
+  @apply bg-[#C9DABF]/90 text-[#4C705A] px-3 py-1 rounded-full text-xs font-semibold inline-block mb-2;
+}
+
+.hero::before {
+  content: "";
+  @apply absolute inset-0 rounded-xl;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.4), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  @apply relative z-10 max-w-xs sm:max-w-md mx-auto;
+  animation: fadeUp 1s ease-in-out;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  @apply text-xl sm:text-2xl md:text-3xl font-extrabold leading-snug;
+  color: #3b5947;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.hero-subtext {
+  @apply mt-2 text-sm sm:text-base leading-relaxed max-w-xs sm:max-w-sm mx-auto;
+  color: rgba(70, 90, 75, 0.85);
+}
+
+.hero-btn {
+  @apply mt-4 sm:mt-5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-semibold shadow-sm transition-transform duration-300;
+  background: linear-gradient(90deg, #cddcc0 0%, #dfe8d1 100%);
+  color: #2f4a3a;
+  box-shadow: 0 3px 8px rgba(160, 180, 150, 0.25);
+}
+
+.hero-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: linear-gradient(90deg, #dfe8d1 0%, #f2f5ec 100%);
+  box-shadow: 0 4px 12px rgba(150, 170, 140, 0.3);
+}
+
+.hero::after {
+  content: "";
+  @apply absolute w-36 h-36 sm:w-48 sm:h-48 rounded-full blur-3xl opacity-25;
+  background: radial-gradient(circle, #e9f1dc 0%, transparent 70%);
+  top: -20px;
+  left: -40px;
+  animation: floatGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(6px);
+  }
+}
+
+/* ===================== Sections ===================== */
+.section {
+  @apply px-4 py-12 sm:px-6 sm:py-16 bg-[#FAF9F6];
+}
+
+.section-title {
+  @apply text-2xl sm:text-3xl font-bold text-[#3B5947] text-center;
+}
+
+/* ===================== Categories ===================== */
+.category-grid {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 justify-items-center;
+}
+
+.category-card {
+  @apply flex flex-col items-center justify-center rounded-3xl p-4 sm:p-6 w-full max-w-[180px] sm:max-w-[220px] shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-1 border border-[#E9E7E3];
+}
+
+/* Category backgrounds preserved (kept gradients) */
+.category-card:nth-child(1) {
+  background: linear-gradient(145deg, #fdeae7 0%, #fff7f3 100%);
+}
+
+.category-card:nth-child(2) {
+  background: linear-gradient(145deg, #e9efff 0%, #f6f8ff 100%);
+}
+
+.category-card:nth-child(3) {
+  background: linear-gradient(145deg, #f6ecff 0%, #fbf8ff 100%);
+}
+
+.category-card:nth-child(4) {
+  background: linear-gradient(145deg, #fff5e2 0%, #fff9ee 100%);
+}
+
+.category-card:nth-child(5) {
+  background: linear-gradient(145deg, #eaffea 0%, #f8fff5 100%);
+}
+
+.category-card:nth-child(6) {
+  background: linear-gradient(145deg, #ffeef3 0%, #fff7fa 100%);
+}
+
+.category-card:nth-child(7) {
+  background: linear-gradient(145deg, #eaf8ff 0%, #f5fcff 100%);
+}
+
+.category-card:nth-child(8) {
+  background: linear-gradient(145deg, #fff8e8 0%, #fffcf3 100%);
+}
+
+.category-img {
+  @apply w-20 h-20 sm:w-24 sm:h-24 object-contain mb-2 sm:mb-3 filter drop-shadow-sm transition-transform duration-300;
+}
+
+.category-card:hover {
+  border-color: #A3B899;
+}
+
+.category-card:hover .category-img {
+  transform: scale(1.05);
+}
+
+.category-name {
+  @apply font-semibold text-[#383838] text-sm sm:text-base;
+}
+
+.category-items {
+  @apply text-[#6d6d6d] text-xs sm:text-sm;
+}
+
+.view-all-btn {
+  @apply font-medium text-[#6b5d4e] transition duration-200;
+}
+
+.view-all-btn:hover {
+  color: #c2a974;
+  text-shadow: 0 0 8px rgba(255, 237, 186, 0.5);
+}
+
+/* ===================== Featured Products ===================== */
+/* preserve grid style for desktop; responsive carousel handled by inline styles in React */
+.featured-grid {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-6;
+}
+
+.product-card {
+  @apply bg-white border border-[#E5E3DF] rounded-2xl p-4 sm:p-5 text-center shadow-sm hover:shadow-md hover:scale-105 transition;
+}
+
+.product-category {
+  @apply text-xs text-[#7B9971] mb-1 sm:mb-2;
+}
+
+.product-img-box {
+  @apply bg-[#F0F3EC] rounded-xl h-28 sm:h-32 mb-3 sm:mb-4 flex justify-center items-center overflow-hidden;
+}
+
+.product-img {
+  @apply w-full h-full object-cover transition-transform duration-300 hover:scale-105;
+}
+
+.product-name {
+  @apply font-semibold text-[#3B5947];
+}
+
+.product-price {
+  @apply text-[#4C705A] font-bold mt-1;
+}
+
+/* 🎯 Base shared button style */
+.action-btn {
+  @apply relative inline-flex justify-center items-center w-32 sm:w-36 
+  px-4 py-2 sm:py-2.5 text-sm sm:text-base font-semibold rounded-full 
+  transition-all duration-300 ease-in-out focus-visible:outline-none 
+  focus-visible:ring-2 focus-visible:ring-[#C9DABF] focus-visible:ring-offset-2;
+}
+
+/* 🛒 Add to Cart Button */
+.add-btn {
+  @apply action-btn bg-[#C9DABF] text-[#2F4738] shadow-sm border border-transparent;
+  position: relative;
+  overflow: hidden;
+  z-index: 0; /* ensure text stays above background */
+}
+
+.add-btn::before {
+  content: "";
+  @apply absolute inset-0 bg-[#F5E6A1] opacity-0 rounded-full transition-all duration-300;
+  transform: scale(0.8);
+  z-index: -1; /* move background layer below text */
+}
+
+.add-btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(169, 192, 157, 0.3);
+}
+
+.add-btn:active {
+  transform: scale(0.97);
+}
+
+/* 👁️ Quick View Button */
+.quick-view-btn {
+  @apply action-btn bg-white border border-[#C9DABF] text-[#2F4738] shadow-sm;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-view-btn::before {
+  content: "";
+  @apply absolute inset-0 bg-[#C9DABF]/30 opacity-0 rounded-full transition-all duration-300;
+  transform: scale(0.9);
+}
+
+.quick-view-btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.quick-view-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(169, 192, 157, 0.25);
+}
+
+.quick-view-btn:active {
+  transform: scale(0.97);
+}
+
+/* a minor overlay on featured cards (preserved) */
+.featured-banner::after {
+  content: "";
+  @apply absolute inset-0 rounded-3xl bg-black/10 pointer-events-none;
+}
+
+/* ===================== Free Delivery Banner ===================== */
+/* preserved styles with micro-animations */
+.free-banner {
+  @apply relative overflow-hidden mx-4 my-12 sm:mx-6 sm:my-20 rounded-3xl shadow-lg text-[#3B5947];
+  background: linear-gradient(135deg, #c8d9be 0%, #dde8d0 50%, #f0f4ea 100%);
+}
+
+.free-banner-content {
+  @apply flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 px-5 py-10 sm:px-8 sm:py-16 text-center md:text-left;
+}
+
+.free-banner-icon {
+  @apply flex items-center justify-center bg-[#FAF9F6]/40 rounded-full p-4 sm:p-5 backdrop-blur-md;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.free-banner-title {
+  @apply text-2xl sm:text-3xl font-extrabold mb-2 tracking-tight;
+}
+
+.free-banner-sub {
+  @apply text-[#3B5947]/80 text-base sm:text-lg mb-4 sm:mb-6 max-w-xs sm:max-w-md;
+}
+
+.highlight {
+  @apply font-semibold text-[#3B5947];
+}
+
+.free-banner-btn {
+  @apply bg-[#4C705A] text-[#FAF9F6] px-5 sm:px-6 py-2.5 rounded-full font-semibold shadow-md text-base transition-all duration-200;
+}
+
+.free-banner-btn:hover {
+  @apply bg-[#F5E6A1] text-[#4C705A];
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 12px rgba(76, 112, 90, 0.25);
+}
+
+/* ===================== Feedback Section (Enhanced Testimonials) ===================== */
+
+.feedback-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 sm:mt-10;
+}
+
+/* ✨ Card Container */
+.feedback-card {
+  @apply bg-white p-6 rounded-2xl shadow-md transition-all duration-500 ease-in-out flex flex-col justify-between border border-[#E9E7E3] h-full;
+  min-height: 240px;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* 🪄 Subtle hover lift + soft glow */
+.feedback-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(163, 184, 153, 0.25);
+  border-color: #c9dabf;
+}
+
+/* 🌿 Gradient accent animation on hover */
+.feedback-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(163, 184, 153, 0.08), rgba(201, 218, 191, 0.15));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+.feedback-card:hover::before {
+  opacity: 1;
+}
+
+/* 🧍 User Info */
+.feedback-user-info {
+  @apply flex items-center gap-4 mb-3 relative;
+  z-index: 1;
+}
+
+/* 👤 Avatar Animation */
+.feedback-avatar {
+  @apply w-14 h-14 rounded-full object-cover border-2 border-[#C9DABF] shadow-sm transition-all duration-300;
+}
+
+.feedback-card:hover .feedback-avatar {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 0 15px rgba(163, 184, 153, 0.4);
+}
+
+/* ✍️ Text Details */
+.feedback-user {
+  @apply font-semibold text-[#3B5947] text-base leading-tight;
+}
+
+.feedback-role {
+  @apply text-xs text-[#6E8668] tracking-wide uppercase;
+}
+
+/* ⭐ Star Rating */
+.feedback-rating {
+  @apply flex items-center gap-1 mb-2;
+  transition: transform 0.3s ease;
+}
+
+.feedback-card:hover .feedback-rating {
+  transform: scale(1.05);
+}
+
+/* 💬 Testimonial Text (fixed & enhanced) */
+.feedback-text {
+  @apply text-[#4C705A] mt-2 italic leading-relaxed text-sm sm:text-base relative z-10;
+  animation: fadeIn 0.6s ease both;
+  font-style: italic;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* Remove automatic quotes since we already include them naturally in the content */
+.feedback-text::before,
+.feedback-text::after {
+  content: none;
+}
+
+/* 🕹️ Carousel Navigation */
+.feedback-controls button {
+  @apply px-3 py-2 bg-white border border-[#E9E7E3] rounded-md shadow-sm hover:bg-[#F6F5F2] transition-all;
+  transform: scale(1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.feedback-controls button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(169, 192, 157, 0.3);
+}
+
+/* ✨ Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Mobile-Friendly Adjustments */
+@media (max-width: 480px) {
+  .feedback-card {
+    @apply p-4 rounded-xl;
+    min-height: 200px;
+  }
+
+  .feedback-avatar {
+    @apply w-12 h-12;
+  }
+
+  .feedback-user {
+    @apply text-[13px];
+  }
+
+  .feedback-role {
+    @apply text-[11px];
+  }
+
+  .feedback-text {
+    @apply text-[13px];
+  }
+
+  .feedback-controls {
+    @apply flex justify-center gap-3 mt-4;
+  }
+}
+
+/* ===================== Footer ===================== */
+.footer {
+  @apply bg-[#4C705A] text-[#FAF9F6] px-4 py-8 sm:px-6 sm:py-10 relative overflow-hidden;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+}
+
+.footer-container {
+  @apply max-w-6xl mx-auto relative z-10 flex flex-col gap-8;
+}
+
+.footer::before {
+  content: "";
+  @apply absolute inset-0 opacity-10;
+  background: radial-gradient(circle at top left, #F5E6A1 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.footer-grid {
+  @apply grid gap-8 md:grid-cols-3;
+}
+
+.footer-title {
+  @apply font-bold mb-3 text-[#F5E6A1] uppercase tracking-wide text-base sm:text-lg;
+}
+
+.footer-links {
+  @apply space-y-2;
+}
+
+.footer-links li a {
+  @apply text-[#FAF9F6]/80 hover:text-[#FFFFFF] transition duration-200 ease-in-out text-[14px] sm:text-[16px];
+}
+
+/* Divider */
+.footer-divider {
+  @apply border-t border-[#FAF9F6]/20 mt-6 sm:mt-8;
+}
+
+/* Footer Copy */
+.footer-copy {
+  @apply text-center text-xs sm:text-sm text-[#E9E7E3]/80 mt-4 sm:mt-6;
+}
+
+.brand-name {
+  @apply font-semibold text-[#F5E6A1];
+}
+
+/* Social Media Icons */
+.social-icons {
+  @apply flex gap-3 sm:gap-4 mt-3;
+}
+
+.social-link {
+  @apply inline-block focus:outline-none focus:ring-2 focus:ring-[#F5E6A1] focus:ring-offset-2 rounded transition-transform duration-300;
+}
+
+.social-link:hover {
+  transform: translateY(-2px) scale(1.1);
+}
+
+.social-icon {
+  @apply w-6 h-6 sm:w-8 sm:h-8 object-contain opacity-90 transition ease-in-out duration-300;
+}
+
+.social-icon:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* ===================== Newsletter (kept styles, added focus states) ===================== */
+.footer-newsletter {
+  @apply w-full flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 mt-6;
+}
+
+.newsletter-title {
+  @apply text-sm sm:text-base font-medium text-[#FAF9F6]/90;
+}
+
+.newsletter-form {
+  @apply flex w-full sm:w-auto;
+}
+
+.newsletter-input {
+  @apply px-3 py-2 text-sm rounded-l-md border border-[#C9DABF] focus:outline-none focus:ring-2 focus:ring-[#A3B899] transition duration-200 flex-1;
+  background-color: #FAF9F6;
+  color: #4C705A;
+}
+
+.newsletter-input::placeholder {
+  color: #7B9971;
+  opacity: 0.7;
+}
+
+.newsletter-btn {
+  @apply px-4 py-2 rounded-r-md font-semibold text-sm bg-gradient-to-r from-[#C9DABF] to-[#F5E6A1] text-[#4C705A] hover:from-[#A3B899] hover:to-[#DFF3E1] transition-all duration-200 shadow-sm;
+}
+
+.newsletter-btn:hover {
+  @apply scale-105 shadow-md;
+}
+
+/* ===================== Small Utilities & Motion Reductions ===================== */
+/* subtle focus visible utility */
+:focus {
+  outline: none;
+}
+.focus-ring:focus {
+  @apply ring-2 ring-[#A3B899] ring-offset-2;
+}
+
+/* Screen reader only (used for live region) */
+/* .sr-only {
+  @apply sr-only;
+} */
+
+/* Tiny pulse animation for cart updates */
+@keyframes cartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+.cart-pulse {
+  animation: cartPulse 400ms ease-in-out;
+}
+
+/* Small modal z-index helper (used by quick view) */
+.z-60 { z-index: 60; }
+
+/* ===================== Responsive tweaks ===================== */
+@media (max-width: 640px) {
+  .footer-grid {
+    @apply grid-cols-1;
+  }
+
+  .footer-newsletter {
+    @apply flex-col items-start gap-2;
+  }
+
+  .newsletter-form {
+    @apply w-full;
+  }
+
+  /* ensure featured section padding is comfortable on small screens */
+  .featured-section {
+    @apply py-8 px-4;
+  }
+}
